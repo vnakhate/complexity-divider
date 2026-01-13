@@ -20,7 +20,7 @@ Low Complexity → Easy to Test → Fast Feedback → Compound Gains
 
 ```bash
 # Clone this repo (or download files directly)
-git clone https://github.com/yourusername/complexity-divider.git
+git clone https://github.com/vnakhate/complexity-divider.git
 
 # Copy skills to your project
 cp -r complexity-divider/.claude/skills/* /path/to/your/project/.claude/skills/
@@ -31,7 +31,7 @@ Or manually:
 ```bash
 mkdir -p your-project/.claude/skills
 curl -o your-project/.claude/skills/complexity-divider.md \
-  https://raw.githubusercontent.com/yourusername/complexity-divider/main/.claude/skills/complexity-divider.md
+  https://raw.githubusercontent.com/vnakhate/complexity-divider/main/.claude/skills/complexity-divider.md
 ```
 
 ### 2. Add ESLint rules
