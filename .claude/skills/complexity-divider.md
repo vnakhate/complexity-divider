@@ -23,11 +23,11 @@ cp complexity-divider.md /path/to/your/project/.claude/skills/
 ```javascript
 // .eslintrc.cjs or eslint.config.js
 rules: {
-  'complexity': ['error', { max: 15 }],
-  'max-depth': ['error', 4],
-  'max-nested-callbacks': ['error', 3],
-  'max-lines-per-function': ['warn', { max: 100, skipComments: true }],
-  'max-params': ['warn', 5],
+  'complexity': ['error', { max: 10 }],
+  'max-depth': ['error', 3],
+  'max-nested-callbacks': ['error', 2],
+  'max-lines-per-function': ['warn', { max: 200, skipComments: true }],
+  'max-params': ['warn', 4],
 }
 ```
 
@@ -261,7 +261,7 @@ After implementation, run:
 |--------|-------|--------|-----|
 | Cyclomatic (per function) | 1-8 | 9-15 | >15 |
 | Cognitive (per function) | 1-10 | 11-20 | >20 |
-| Lines per function | 1-50 | 51-100 | >100 |
+| Lines per function | 1-200 | 201-300 | >300 |
 | File total complexity | 1-40 | 41-75 | >75 |
 | Complexity delta (PR) | -any | +0-15% | +>15% |
 
@@ -282,7 +282,7 @@ Block or warn before code leaves the developer's machine.
     "complexity": ["error", { "max": 15 }],
     "max-depth": ["error", 4],
     "max-nested-callbacks": ["error", 3],
-    "max-lines-per-function": ["warn", { "max": 100, "skipComments": true }],
+    "max-lines-per-function": ["warn", { "max": 200, "skipComments": true }],
     "max-params": ["warn", 5]
   }
 }
@@ -421,7 +421,7 @@ module.exports = {
     'complexity': ['error', { max: 15 }],
     'max-depth': ['error', 4],
     'max-nested-callbacks': ['error', 3],
-    'max-lines-per-function': ['warn', { max: 100, skipComments: true, skipBlankLines: true }],
+    'max-lines-per-function': ['warn', { max: 200, skipComments: true, skipBlankLines: true }],
     'max-params': ['warn', 5],
   }
 };
@@ -545,7 +545,7 @@ npm run verify:full       # Includes E2E tests
 ### Thresholds (2026)
 - Cyclomatic per function: max 15
 - Cognitive per function: max 20
-- Lines per function: max 100
+- Lines per function: max 200
 - Max nesting depth: 4
 
 ### When to Divide

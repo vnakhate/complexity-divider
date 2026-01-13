@@ -40,7 +40,7 @@ npm run lint
 **Soft Limits (Warn):**
 | Metric | Maximum |
 |--------|---------|
-| Lines per function | 100 |
+| Lines per function | 200 |
 | Function parameters | 5 |
 
 **Rules:**
