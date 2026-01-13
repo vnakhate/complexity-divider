@@ -12,6 +12,79 @@ High complexity is a leading indicator of bugs, slow tests, and maintenance burd
 
 ---
 
+## Practical Utility Assessment
+
+### When to Use This Skill
+
+| Scenario | Utility | Why |
+|----------|---------|-----|
+| **New code/features** | **8/10** | Cheap feedback, easy to act on, context is fresh |
+| **Small edits (<20 lines)** | **5/10** | Quick before/after check, builds good habits |
+| **Existing legacy code** | **3/10** | Warnings ignored, refactor is expensive and risky |
+
+### Key Insight
+
+For **new code**, the cost to refactor is near-zero. You just wrote it, context is fresh, AI can regenerate quickly.
+
+For **existing code** (e.g., a 1900-line file with complexity 46), refactoring is expensive. The warnings exist but acting on them requires significant effort.
+
+### Limitations
+
+1. **Warnings not errors** - Rules set to `"warn"` so builds pass anyway. No hard enforcement.
+2. **Doesn't catch logic bugs** - A 4-line bug fix has more impact than complexity metrics would catch.
+3. **Existing violations accumulate** - Legacy code warnings get ignored over time.
+
+### Does NOT Force Refactoring of Existing Code
+
+| Scenario | Result |
+|----------|--------|
+| Add new function | ✅ Warns if new function is too complex |
+| Add code to existing complex function | ⚠️ Warning already existed, count stays same |
+| Touch a 1900-line file | ❌ No pressure to refactor it |
+
+The before/after workflow only checks if warnings **increased**. If a file already has complexity 46, adding 5 lines doesn't change the warning count - it was already flagged.
+
+**This skill is a ratchet** - it stops things from getting worse, but doesn't make existing code better.
+
+### Options to Force Legacy Refactoring
+
+1. **Change to "error"** - Blocks commits on ANY violation (including legacy)
+   ```javascript
+   "complexity": ["error", { max: 15 }]
+   ```
+   Drawback: Blocks all commits until legacy is fixed.
+
+2. **File-specific overrides** - Strict on new code, lenient on legacy
+   ```javascript
+   // Strict for new features
+   { files: ["src/features/**"], rules: { "complexity": ["error", 15] } }
+   // Lenient for legacy
+   { files: ["app/student/drills/**"], rules: { "complexity": "off" } }
+   ```
+
+3. **Boy Scout Rule** - Policy: "If you touch a file, reduce its warnings by 1"
+   Drawback: Requires discipline, not automated.
+
+### Making It More Effective
+
+To add enforcement, either:
+```javascript
+// Change warn to error in eslint.config.js
+"complexity": ["error", { max: 15 }],
+```
+
+Or use pre-commit hook with zero tolerance:
+```bash
+# .husky/pre-commit
+npm run lint -- --max-warnings=0
+```
+
+### Bottom Line
+
+Use this skill for new code. The before/after workflow catches complexity creep early when it's cheap to fix. For existing code, treat warnings as informational only.
+
+---
+
 ## Quick Setup
 
 ### 1. Copy this skill
@@ -534,24 +607,51 @@ npm run verify
 
 ## Quick Reference
 
-### Commands (customize for your project)
+### Before/After Workflow (Use This!)
+
 ```bash
-npm run lint              # Check complexity violations
-npm run verify            # Full verification (lint + test + typecheck)
-npm run verify:quick      # Only changed files
-npm run verify:full       # Includes E2E tests
+# 1. BEFORE making changes - capture baseline
+BEFORE=$(npm run lint 2>&1 | grep -c "warning")
+echo "Baseline warnings: $BEFORE"
+
+# 2. Make your changes...
+
+# 3. AFTER changes - compare
+AFTER=$(npm run lint 2>&1 | grep -c "warning")
+echo "After warnings: $AFTER"
+
+# 4. Only commit if no new warnings
+if [ "$AFTER" -le "$BEFORE" ]; then
+  echo "✅ No complexity regression - safe to commit"
+else
+  echo "❌ Added $((AFTER - BEFORE)) warnings - refactor before committing"
+fi
 ```
 
-### Thresholds (2026)
-- Cyclomatic per function: max 15
-- Cognitive per function: max 20
-- Lines per function: max 200
-- Max nesting depth: 4
+**One-liner for quick check:**
+```bash
+npm run lint 2>&1 | grep -E "(complexity|max-depth|max-lines|max-params)" | head -20
+```
+
+### Commands
+```bash
+npm run lint              # Check complexity
+npm run verify            # Full check
+npm run verify:quick      # Fast check
+npm run verify:full       # Including E2E
+```
+
+### Thresholds
+- Cyclomatic: max 15
+- Nesting: max 4
+- Callbacks: max 3
+- Lines/function: max 200
+- Parameters: max 5
 
 ### When to Divide
-- Any function with complexity > 15
-- Any file with total complexity > 75
-- Any PR that increases complexity > 15%
+- Any function > 15 complexity
+- Any file > 75 total complexity
+- Any PR increasing complexity > 15%
 
 ---
 
