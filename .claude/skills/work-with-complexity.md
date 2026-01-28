@@ -15,6 +15,21 @@ Apply complexity-divider guardrails to all implementation work. This skill is au
 
 ---
 
+## Karpathy Guidelines (Behavioral)
+
+Apply these principles alongside complexity metrics:
+
+| Guideline | Rule |
+|-----------|------|
+| **Think Before Coding** | State assumptions. If unclear, ask. Don't pick silently. |
+| **Simplicity First** | Minimum code. No speculative features. If 200 lines could be 50, rewrite. |
+| **Surgical Changes** | Touch only what you must. Match existing style. Every line traces to request. |
+| **Goal-Driven Execution** | Transform tasks to verifiable goals. Loop until verified. |
+
+**The Test:** Would a senior engineer say this is overcomplicated? If yes, simplify.
+
+---
+
 ## Protocol
 
 ### Phase 1: Before Starting
@@ -181,10 +196,11 @@ npm run verify:full       # Includes E2E tests
 
 When using `/compound-engineering:workflows:work`:
 
-1. Include complexity constraints in task description
-2. Run `npm run lint` before starting
-3. Divide functions as you go (not at the end)
-4. Run `npm run verify` before marking complete
+1. **Think Before Coding:** State assumptions, include complexity constraints in task description
+2. **Baseline:** Run `npm run lint` before starting
+3. **Simplicity First:** Divide functions as you go (not at the end)
+4. **Surgical Changes:** Touch only what the task requires
+5. **Goal-Driven:** Run `npm run verify` before marking complete
 
 ---
 

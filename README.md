@@ -67,8 +67,21 @@ Remove any `|| true` from lint/test commands in your CI workflows.
 
 | File | Purpose |
 |------|---------|
-| `complexity-divider.md` | Main skill - comprehensive complexity management |
+| `complexity-divider.md` | Main skill - complexity metrics + Karpathy behavioral guidelines |
 | `work-with-complexity.md` | Work protocol - applied during implementation |
+
+## Karpathy Guidelines
+
+Behavioral guidelines for LLM coding, integrated alongside complexity metrics:
+
+| Guideline | Rule |
+|-----------|------|
+| **Think Before Coding** | State assumptions. If unclear, ask. Don't pick silently. |
+| **Simplicity First** | Minimum code. No speculative features. If 200 lines could be 50, rewrite. |
+| **Surgical Changes** | Touch only what you must. Match existing style. Every line traces to request. |
+| **Goal-Driven Execution** | Transform tasks to verifiable goals. Loop until verified. |
+
+**Integration:** Use Karpathy for *behavioral* decisions, complexity metrics for *automated enforcement*.
 
 ## Thresholds (2026)
 
