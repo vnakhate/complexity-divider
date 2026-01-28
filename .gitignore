@@ -10,3 +10,20 @@ Thumbs.db
 
 # Node (if examples are added later)
 node_modules/
+
+# ===== Security: Environment files - NEVER commit secrets =====
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# ===== Security: Private keys and credentials =====
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.yaml
+secrets.yml
+service-account*.json
+
