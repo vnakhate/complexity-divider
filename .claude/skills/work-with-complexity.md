@@ -30,6 +30,40 @@ Apply these principles alongside complexity metrics:
 
 ---
 
+## Jobs Design Principles (Applied to Code)
+
+### "If it needs a manual, it's broken"
+
+Code should be self-explanatory:
+- ✅ Function name + signature reveals what it does
+- ✅ Variable names make conditions obvious
+- ✅ Flow is clear without tracing through nested logic
+- ❌ Needs 10-line comment to explain "what" (not "why")
+
+**Rule:** If you're about to write a comment explaining complex logic, divide the function instead.
+
+### "Say no to 1,000 things"
+
+Focus means cutting good ideas:
+- ❌ "We might need this flexibility later"
+- ❌ "This abstraction could be reused someday"
+- ❌ "Let's add error handling for this edge case that can't happen"
+- ✅ Minimum code that solves the current problem
+
+**Rule:** Every line must trace directly to the user's request.
+
+### "Obsess over details"
+
+Small friction compounds into drag on velocity:
+- Every unnecessary parameter slows understanding
+- Every unclear function name creates cognitive load
+- Every nested condition multiplies debugging time
+- Every skipped test increases fear of changes
+
+**Rule:** Treat developer experience (reading, testing, modifying code) as a product.
+
+---
+
 ## Protocol
 
 ### Phase 1: Before Starting

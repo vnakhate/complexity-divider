@@ -67,8 +67,24 @@ Remove any `|| true` from lint/test commands in your CI workflows.
 
 | File | Purpose |
 |------|---------|
-| `complexity-divider.md` | Main skill - complexity metrics + Karpathy behavioral guidelines |
+| `complexity-divider.md` | Main skill - complexity metrics + Karpathy + Jobs design principles |
 | `work-with-complexity.md` | Work protocol - applied during implementation |
+
+## Design Philosophy
+
+> "Simplicity is the ultimate sophistication" — Steve Jobs
+
+When AI generates code instantly, **clarity becomes the product**. The complexity divider applies Jobs' product design principles to code:
+
+| Jobs Principle | Application |
+|----------------|-------------|
+| **Simplicity is ultimate sophistication** | Cyclomatic complexity < 15, not "feature complete" |
+| **If it needs a manual, it failed** | Code should be self-explanatory without extensive comments |
+| **Say no to 1,000 things** | No speculative features, abstractions, or "flexibility" |
+| **Perfection in details** | Every function boundary, parameter, and condition matters |
+| **Question everything** | Challenge assumptions before coding |
+
+Complex code is a broken product. Simple code ships faster, tests faster, and compounds velocity gains.
 
 ## Karpathy Guidelines
 

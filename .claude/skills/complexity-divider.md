@@ -12,6 +12,24 @@ High complexity is a leading indicator of bugs, slow tests, and maintenance burd
 
 ---
 
+## Design Philosophy
+
+> "Simplicity is the ultimate sophistication" — Steve Jobs
+
+The complexity divider embodies Jobs' product design principles applied to code:
+
+| Jobs Principle | Complexity Divider Application |
+|----------------|-------------------------------|
+| **Simplicity is ultimate sophistication** | Cyclomatic complexity < 15, not "feature complete" |
+| **If it needs a manual, it failed** | If code needs extensive comments, divide it |
+| **Say no to 1,000 things** | No speculative features, abstractions, or "flexibility" |
+| **Perfection in details** | Every function boundary, parameter, and condition matters |
+| **Question everything** | Challenge assumptions before coding |
+
+When AI generates code instantly, **clarity becomes the product**. Complex code is a broken product.
+
+---
+
 ## Practical Utility Assessment
 
 ### When to Use This Skill
